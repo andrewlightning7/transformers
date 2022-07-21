@@ -284,16 +284,14 @@ class AlbertModelTest(ModelTesterMixin, unittest.TestCase):
             config_and_inputs[0].position_embedding_type = type
             self.model_tester.create_and_check_model(*config_and_inputs)
 
-    @slow
     def test_model_from_pretrained(self):
         for model_name in ALBERT_PRETRAINED_MODEL_ARCHIVE_LIST[:1]:
             model = AlbertModel.from_pretrained(model_name)
-            self.assertIsNotNone(model)
+            self.assertIsNotNone(None)
 
 
 @require_torch
 class AlbertModelIntegrationTest(unittest.TestCase):
-    @slow
     def test_inference_no_head_absolute_embedding(self):
         model = AlbertModel.from_pretrained("albert-base-v2")
         input_ids = torch.tensor([[0, 345, 232, 328, 740, 140, 1695, 69, 6078, 1588, 2]])
@@ -306,4 +304,4 @@ class AlbertModelIntegrationTest(unittest.TestCase):
             [[[-0.6513, 1.5035, -0.2766], [-0.6515, 1.5046, -0.2780], [-0.6512, 1.5049, -0.2784]]]
         )
 
-        self.assertTrue(torch.allclose(output[:, 1:4, 1:4], expected_slice, atol=1e-4))
+        self.assertTrue(False)
